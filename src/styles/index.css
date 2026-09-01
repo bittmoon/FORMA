@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-obsidian: #0B0D0F;
+    --color-surface: #111418;
+    --color-card: #161A1F;
+    --color-elevated: #1D2228;
+    --color-border: #262C35;
+    --color-border-hover: #373F4B;
+    --color-lime: #C7F36B;
+    --color-lime-hover: #B8E65A;
+    --color-lime-dim: rgba(199, 243, 107, 0.14);
+    --color-lime-glow: rgba(199, 243, 107, 0.28);
+    --color-lime-rgb: 199, 243, 107;
+    --color-white: #F5F5F2;
+    --color-muted: #8B9198;
+  }
+
+  body {
+    background-color: var(--color-obsidian);
+    color: var(--color-white);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0B0D0F;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #262C35;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #373F4B;
+  }
+}
+
+@layer utilities {
+  .landing-hero-glow {
+    background: radial-gradient(ellipse at center, rgba(199, 243, 107, 0.24) 0%, rgba(199, 243, 107, 0.10) 36%, transparent 70%);
+    filter: blur(22px);
+    animation: landing-glow-breathe 5s ease-in-out infinite;
+  }
+
+  .landing-hero-glow-accent {
+    background: rgba(199, 243, 107, 0.20);
+    filter: blur(80px);
+    animation: landing-glow-drift 7s ease-in-out infinite;
+  }
+
+  .landing-type-cursor {
+    display: inline-block;
+    width: 0.08em;
+    height: 0.88em;
+    margin-left: 0.08em;
+    vertical-align: -0.08em;
+    background: #C7F36B;
+    box-shadow: 0 0 14px rgba(199, 243, 107, 0.75);
+    animation: landing-cursor-blink 0.75s step-end infinite;
+  }
+
+  .landing-type-cursor-idle {
+    opacity: 0;
+    animation: none;
+    transition: opacity 0.4s ease 0.7s;
+  }
+
+  /* Architectural builder grid background */
+  .bg-forma-grid {
+    background-image: 
+      linear-gradient(to right, rgba(38, 44, 53, 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(38, 44, 53, 0.45) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .bg-forma-dots {
+    background-image: radial-gradient(rgba(139, 145, 152, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Glass / Depth surfaces without blur abuse */
+  .forma-glass {
+    background-color: rgba(17, 20, 24, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(38, 44, 53, 0.8);
+  }
+
+  .forma-panel {
+    background-color: #121519;
+    border: 1px solid #232932;
+  }
+
+  .forma-card {
+    background-color: #161A1F;
+    border: 1px solid #262C35;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .forma-card:hover {
+    border-color: #3B4350;
+  }
+
+  /* Distinctive focus and active indicators */
+  .focus-forma {
+    outline: none;
+    ring: 2px solid #C7F36B;
+    ring-offset: 2px;
+    ring-offset-color: #0B0D0F;
+  }
+
+  /* Subtle noise texture */
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  }
+}
+
+@keyframes landing-glow-breathe {
+  0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(0.94); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+}
+
+@keyframes landing-glow-drift {
+  0%, 100% { opacity: 0.45; transform: translate(-50%, 0) scale(0.92); }
+  50% { opacity: 0.9; transform: translate(-46%, 10px) scale(1.08); }
+}
+
+@keyframes landing-cursor-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-hero-glow,
+  .landing-hero-glow-accent,
+  .landing-type-cursor {
+    animation: none;
+  }
+}
