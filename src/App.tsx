@@ -27,7 +27,7 @@ export function App() {
   return (
     <AuthProvider>
       <WorkspaceProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
